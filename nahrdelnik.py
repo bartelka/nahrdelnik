@@ -5,10 +5,11 @@ w = 600
 h = 500
 colours = ["pink", "yellow", "blue", "green"]
 count = 10
-size = 32
+size = 45
 move_list = []
 proces_list = []
 start = size
+list_10 = []
 def setup():
     global move_list
     for i in range(40):
@@ -18,11 +19,12 @@ def setup():
     canvas.create_image(0, h - size-size//2, image=image, anchor=tk.NW)
 
 def check_it(e):
-    global proces_list, move_list
+    global proces_list, move_list, list_10
     zoz = canvas.find_overlapping(e.x,e.y,e.x+1,e.y+1)
     if len(zoz) != 0 and zoz[0] in move_list:
-        if len(proces_list) == 0:
+        if len(proces_list) == 0 and len(list_10) < 10:
             proces_list.append(zoz[0])
+            list_10.append(zoz[0])
             move_list.remove(zoz[0])
             print("stalo sa")
     move_it()
@@ -51,7 +53,7 @@ def nit():
     coord_ball = canvas.coords(proces_list[0])
     if coord_ball[0] > start:
         canvas.move(proces_list[0],-1,0)
-        canvas.after(3,nit)
+        canvas.after(1,nit)
     else:
         start += size
         proces_list = []
