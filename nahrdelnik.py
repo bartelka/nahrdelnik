@@ -53,7 +53,7 @@ def nit():
     coord_ball = canvas.coords(proces_list[0])
     if coord_ball[0] > start:
         canvas.move(proces_list[0],-1,0)
-        canvas.after(1,nit)
+        canvas.after(3,nit)
     else:
         start += size
         proces_list = []
